@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Image } from "expo-image";
-import { View, Text, Pressable, Modal } from "react-native";
+import { View, Text } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { blurhash } from "@/constants/hash";
 import { Iconify } from "react-native-iconify";
 import { Button, IconButton } from "./UI/Button";
+import CarouselCardItem from "./UI/CarouselCardItem";
 
 export default function ItemModal() {
   const {
@@ -12,15 +11,7 @@ export default function ItemModal() {
   } = useTheme();
   return (
     <View className="flex-1" style={{ backgroundColor: background }}>
-      <View className="flex-1">
-        <Image
-          className="flex-1 w-full bg-gray-500/25"
-          source="https://picsum.photos/seed/696/3000/2000"
-          placeholder={{ blurhash }}
-          contentFit="cover"
-          transition={1000}
-        />
-      </View>
+      <CarouselCardItem images={["https://picsum.photos/seed/696/3000/2000","https://picsum.photos/seed/696/3000/2000"]} />
       <View className="p-4">
         <Text className="text-2xl font-bold">Item name</Text>
         <Text className="text-2xl font-bold">
