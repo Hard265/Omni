@@ -1,3 +1,4 @@
+import "./global.css"
 import * as React from "react";
 import { View, Text, useColorScheme } from "react-native";
 import {
@@ -38,9 +39,9 @@ function App() {
             prevState: State,
             action: {
                 type:
-                    | "RESTORE_TOKEN"
-                    | "SIGN_IN"
-                    | "SIGN_OUT";
+                | "RESTORE_TOKEN"
+                | "SIGN_IN"
+                | "SIGN_OUT";
                 token?: any;
             }
         ) => {
@@ -75,7 +76,7 @@ function App() {
                 userToken = await SecureStore.getItemAsync(
                     "userToken"
                 );
-            } catch {}
+            } catch { }
             dispatch({
                 type: "RESTORE_TOKEN",
                 token: userToken,
@@ -92,7 +93,7 @@ function App() {
                         "userToke",
                         "dummy"
                     );
-                } catch {}
+                } catch { }
                 dispatch({
                     type: "SIGN_IN",
                     token: "dummy",
@@ -103,7 +104,7 @@ function App() {
                     await SecureStore.deleteItemAsync(
                         "userToken"
                     );
-                } catch {}
+                } catch { }
                 dispatch({ type: "SIGN_OUT" });
             },
             isSignout: state.isSignout,
@@ -113,12 +114,12 @@ function App() {
 
     return (
         <GestureHandlerRootView
-            theme={
-                scheme === "dark" ? DarkTheme : DefaultTheme
-            }
             style={{ flex: 1 }}
         >
-            <NavigationContainer>
+            <NavigationContainer
+                theme={
+                    scheme === "dark" ? DarkTheme : DefaultTheme
+                }>
                 <AuthContext.Provider value={authContext}>
                     <Stack.Navigator>
                         {state.isSignout ? (
