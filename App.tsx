@@ -98,7 +98,7 @@ function App() {
     () => ({
       signIn: async (credintials) => {
         try {
-          await SecureStore.setItemAsync("userToke", "dummy");
+          await SecureStore.setItemAsync("userToken", "dummy");
         } catch {}
         dispatch({
           type: "SIGN_IN",
