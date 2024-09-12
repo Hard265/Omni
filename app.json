@@ -3,6 +3,7 @@
     "name": "omnicart",
     "slug": "omnicart",
     "version": "1.0.0",
+    "scheme": "omni",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
