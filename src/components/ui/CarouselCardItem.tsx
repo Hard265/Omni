@@ -1,4 +1,4 @@
-import { blurhash } from "@/constants/hash";
+import { blurhash } from "@/constants/Strings";
 import { Image } from "expo-image";
 import { useRef } from "react";
 import { View } from "react-native";
