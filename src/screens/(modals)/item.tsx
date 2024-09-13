@@ -2,16 +2,21 @@ import * as React from "react";
 import { View, Text } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Iconify } from "react-native-iconify";
-import { Button, IconButton } from "./UI/Button";
-import CarouselCardItem from "./UI/CarouselCardItem";
+import { Button, IconButton } from "@/components/ui/Button";
+import CarouselCardItem from "@/components/ui/CarouselCardItem";
 
-export default function ItemModal() {
+export default function ItemScreen() {
   const {
     colors: { background, text },
   } = useTheme();
   return (
     <View className="flex-1" style={{ backgroundColor: background }}>
-      <CarouselCardItem images={["https://picsum.photos/seed/696/3000/2000","https://picsum.photos/seed/696/3000/2000"]} />
+      <CarouselCardItem
+        images={[
+          "https://picsum.photos/seed/696/3000/2000",
+          "https://picsum.photos/seed/696/3000/2000",
+        ]}
+      />
       <View className="p-4">
         <Text className="text-2xl font-bold">Item name</Text>
         <Text className="text-2xl font-bold">

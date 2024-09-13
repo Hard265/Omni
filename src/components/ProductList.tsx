@@ -1,7 +1,11 @@
-import { blurhash } from "@/constants/hash";
-import { Product } from "@/products";
+import CarouselCardItem from "@/components/ui/CarouselCardItem";
+import { blurhash } from "@/constants/Strings";
+import { fetchProducts } from "@/redux/actions/productActions";
+import { Product } from "@/redux/reducers/productReducer";
+import { AppDispatch, RootState } from "@/redux/store";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { Image } from "expo-image";
+import * as React from "react";
 import {
   Pressable,
   ScrollView,
@@ -11,9 +15,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import CarouselCardItem from "./UI/CarouselCardItem";
+import { useDispatch, useSelector } from "react-redux";
 
-interface ItemsListProps {
+interface ProductListProps {
   sections: SectionListData<Product, { data: Product[]; title: string }>[];
   categories: {
     title: string;
@@ -21,11 +25,35 @@ interface ItemsListProps {
   }[];
 }
 
-export default function ItemsList({ sections, categories }: ItemsListProps) {
+export default function ProductList() {
   const {
     colors: { primary, background },
   } = useTheme();
   const navigation = useNavigation();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const products = useSelector((state: RootState) => state.product.products);
+
+  React.useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
+  const sections = products.map((product) => ({
+    data: [product],
+    title: product.name,
+  }));
+
+  const categories = [
+    {
+      title: "Outdoors",
+      thumbnail: "https://picsum.photos/seed/696/3000/2000",
+    },
+    {
+      title: "Outdoors",
+      thumbnail: "https://picsum.photos/seed/696/3000/2000",
+    },
+  ];
+
   return (
     <SectionList
       sections={sections}

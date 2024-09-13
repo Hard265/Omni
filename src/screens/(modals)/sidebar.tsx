@@ -4,8 +4,7 @@ import {
   DrawerContentScrollView,
   DrawerItem,
 } from "@react-navigation/drawer";
-import { Image, Text, View, StyleSheet } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
+import { StyleSheet } from "react-native";
 import { Iconify } from "react-native-iconify";
 
 export default function HomeSidebar(props: DrawerContentComponentProps) {

@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Iconify } from "react-native-iconify";
 
-import HomeScreen from "@/app/(tabs)/home";
-import SearchScreen from "@/app/(tabs)/search";
-import CartScreen from "@/app/(tabs)/cart";
-import ProfileScreen from "@/app/(tabs)/profile";
+import HomeScreen from "@/screens/home";
+import SearchScreen from "@/screens/home/search";
+import CartScreen from "@/screens/home/cart";
+import ProfileScreen from "@/screens/home/profile";
 
 const Tab = createBottomTabNavigator();
 

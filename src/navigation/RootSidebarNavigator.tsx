@@ -1,16 +1,16 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import HomeSidebar from '@/components/Layouts/HomeSidebar';
-import HomeTabLayout from '@/components/Layouts/HomeTabLayout';
+import Sidebar from '@/screens/(modals)/sidebar';
+import HomeTabNavigator from '@/navigation/HomeTabNavigator';
 
 const Drawer = createDrawerNavigator();
 
 export default function HomeSidebarLayout() {
   return (
-    <Drawer.Navigator drawerContent={HomeSidebar}>
+    <Drawer.Navigator drawerContent={Sidebar}>
       <Drawer.Screen 
         name="HomeTabLayout" 
-        component={HomeTabLayout}
+        component={HomeTabNavigator}
         options={{
           headerShown: false
         }}

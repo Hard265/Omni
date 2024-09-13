@@ -1,7 +1,7 @@
 import * as  React from 'react';
 import { View, Button } from 'react-native';
 
-import { InputField } from '@/components/UI/InputField';
+import { InputField } from '@/components/ui/InputField';
 import useAuth from '@/hooks/useAuth';
 
 export default function LoginScreen(){

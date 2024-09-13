@@ -1,4 +1,4 @@
-import { ListItem } from "@/components/UI/List";
+import { ListItem } from "@/components/ui/List";
 import { useTheme } from "@react-navigation/native";
 
 import {
