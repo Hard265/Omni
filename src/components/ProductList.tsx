@@ -58,6 +58,7 @@ export default function ProductList() {
     <SectionList
       sections={sections}
       horizontal
+      className="bg-white dark:bg-black"
       ListHeaderComponent={
         <View className="p-4">
           <View>

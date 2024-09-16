@@ -49,6 +49,10 @@ export default function ProfilePage() {
           subtitle="Edit your address to receive orders"
           append={<Iconify icon="feather:map-pin" size={24} color={text} />}
         />
+<ListItem
+          title="Notifications"
+          subtitle="Select kinds of notifications that you get about your activities, interest and recommendations"
+          append={<Iconify icon="feather:bell" size={24} color={text} />}                                />
         <ListItem
           title="Download an archive of your data"
           subtitle="Download a zip file containing your personal data"
@@ -56,6 +60,10 @@ export default function ProfilePage() {
             <Iconify icon="feather:download-cloud" size={24} color={text} />
           }
         />
+<ListItem
+          title="Privancy and safety"
+          subtitle="Manage infomation that you see and share on Omni"
+          append={<Iconify icon="feather:shield" size={24} color={text} />}                                />
         <ListItem
           title="Delete your account"
           subtitle="Delete your account and all associated data"

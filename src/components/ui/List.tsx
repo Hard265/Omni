@@ -22,17 +22,15 @@ export function ListItem(props: ListItemProps) {
     <TouchableOpacity
       onPress={props.onPress}
       disabled={props.disabled}
-      className="flex flex-row items-center justify-between p-4 border-b"
-      style={{ borderBottomColor: border }}
+      className="flex flex-row gap-4 items-center p-2"
     >
       {props.append && props.append}
-      <View className="flex-row items-center gap-4">
-        <Text className="text-lg font-semibold">{props.title}</Text>
+      <View className="flex-col flex-1 item-center  pl-4">
+        <Text style={{color:text}} className="text-lg font-medium">{props.title}</Text>
         {props.subtitle && (
           <Text className="text-gray-500">{props.subtitle}</Text>
         )}
       </View>
-      <Iconify icon="feather:chevron-right" size={20} color={text} />
     </TouchableOpacity>
   );
 }

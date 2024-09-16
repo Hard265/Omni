@@ -17,14 +17,14 @@ export default function HomeLayout() {
     >
       <Tab.Group>
         <Tab.Screen
-          name="Store"
+          name="Home"
           component={HomeScreen}
           options={{
             title: "Omni",
             tabBarIcon: (props) => (
               <Iconify
                 color={props.color}
-                icon="feather:shopping-bag"
+                icon="feather:home"
                 size={props.size}
               />
             ),
@@ -65,13 +65,13 @@ export default function HomeLayout() {
             ),
           }}
         />
+<Tab.Screen                                         name="Store"                                      component={HomeScreen}                            options={{                                          title: "Omni",                                    tabBarIcon: (props) => (                            <Iconify                                            color={props.color}                               icon="feather:shopping-bag"                       size={props.size}                               />                                              ),                                                headerRight(props) {                                return (                                            <Iconify                                            icon="feather:bell"                               color={props.tintColor}                           size={24}                                       />                                              );                                              },                                              }}                                              />
         <Tab.Screen
-          name="Profile"
+          name="Settings"
           component={ProfileScreen}
           options={{
-            headerShown: false,
             tabBarIcon: ({ color, size }) => (
-              <Iconify color={color} icon="feather:user" size={size} />
+              <Iconify color={color} icon="feather:settings" size={size} />
             ),
           }}
         />
