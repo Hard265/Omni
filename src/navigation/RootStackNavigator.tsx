@@ -1,15 +1,17 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "@/screens/auth/login";
-import SignupScreen from "@/screens/auth/signup";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginScreen from '@/screens/auth/login';
+import SignupScreen from '@/screens/auth/signup';
 
-import ItemScreen from "@/screens/(modals)/item";
+import ProductDetails from '@/screens/(modals)/product-details';
 
-import RootSidebarNavigator from "@/navigation/RootSidebarNavigator";
+import RootSidebarNavigator from '@/navigation/RootSidebarNavigator';
+import { RootStackParamList } from '@/types/navigation';
 
 interface RootStackNavigatorProps {
   isSignout: boolean;
 }
-const Stack = createNativeStackNavigator();
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootStackNavigator({
   isSignout,
@@ -32,10 +34,10 @@ export default function RootStackNavigator({
               }}
             />
           </Stack.Group>
-          <Stack.Group screenOptions={{ presentation: "modal" }}>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
             <Stack.Screen
-              name="Item"
-              component={ItemScreen}
+              name="ProductDetails"
+              component={ProductDetails}
               options={{
                 headerShown: false,
               }}

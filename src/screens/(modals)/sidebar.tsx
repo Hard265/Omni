@@ -1,89 +1,73 @@
-import useAuth from "@/hooks/useAuth";
+import { ListItemNavigation } from '@/components/ui/List';
+import useAuth from '@/hooks/useAuth';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerItem,
-} from "@react-navigation/drawer";
-import { StyleSheet } from "react-native";
-import { Iconify } from "react-native-iconify";
+} from '@react-navigation/drawer';
+import { useTheme } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { Iconify } from 'react-native-iconify';
 
 export default function HomeSidebar(props: DrawerContentComponentProps) {
-  const { signOut } = useAuth()
+  const { signOut } = useAuth();
+  const {
+    colors: { text },
+  } = useTheme();
 
   return (
     <DrawerContentScrollView {...props}>
-      <DrawerItem
-        label="Account Infomation"
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify icon="feather:user" size={size} color={color} />
-        )}
-        onPress={() => {}}
-      />
-      <DrawerItem
-        label="Categories"
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify icon="iconamoon:category" size={size} color={color} />
-        )}
-        onPress={() => {}}
-      />
-      <DrawerItem
-        label="Deals and Promotions"
-        onPress={() =>{}}
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify
-            size={size}
-            color={color}
-            icon="mingcute:announcement-line"
-          />
-        )}
-      />
-      <DrawerItem
-        label="My Lists"
-        onPress={() => {}}
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify
-            size={size}
-            color={color}
-            icon="material-symbols:patient-list-outline-rounded"
-          />
-        )}
+      <ListItemNavigation
+        title="Account Infomation"
+        append={<Iconify icon="feather:user" size={24} color={text} />}
       />
 
-      <DrawerItem
-        label="Scan QRCode"
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify icon="mingcute:qrcode-2-line" size={size} color={color} />
-        )}
+      <ListItemNavigation
+        title="Categories"
+        append={
+          <Iconify
+            icon="material-symbols:category-outline-rounded"
+            size={24}
+            color={text}
+          />
+        }
+      />
+      <ListItemNavigation
+        title="Deals and Promotions"
+        append={
+          <Iconify size={24} color={text} icon="mingcute:announcement-line" />
+        }
+      />
+      <ListItemNavigation
+        title="My Lists"
+        append={
+          <Iconify
+            size={24}
+            color={text}
+            icon="material-symbols:patient-list-outline-rounded"
+          />
+        }
+      />
+
+      <ListItemNavigation
+        title="Scan QRCode"
+        append={
+          <Iconify icon="mingcute:qrcode-2-line" size={24} color={text} />
+        }
         onPress={() => {}}
       />
-      <DrawerItem
-        label="Follower Request"
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify icon="feather:user-plus" size={size} color={color} />
-        )}
+      <ListItemNavigation
+        title="Follower Request"
+        append={<Iconify icon="feather:user-plus" size={24} color={text} />}
         onPress={() => {}}
       />
-      <DrawerItem
-        label="Settings and Privancy"
-        onPress={() => {}}
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify size={size} color={color} icon="feather:settings" />
-        )}
+      <ListItemNavigation
+        title="Settings and Privancy"
+        append={<Iconify size={24} color={text} icon="feather:settings" />}
       />
-      <DrawerItem
-        label="Log Out"
-        onPress={() => signOut()}
-        labelStyle={styles.itemLabel}
-        icon={({ size, color }) => (
-          <Iconify size={size} color={color} icon="feather:log-out" />
-        )}
+      <ListItemNavigation
+        title="Log Out"
+        append={<Iconify size={24} color={text} icon="feather:log-out" />}
       />
     </DrawerContentScrollView>
   );
@@ -91,5 +75,7 @@ export default function HomeSidebar(props: DrawerContentComponentProps) {
 
 const styles = StyleSheet.create({
   itemLabel: {
-     },
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });

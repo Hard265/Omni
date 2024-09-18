@@ -1,12 +1,14 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Iconify } from "react-native-iconify";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Iconify } from 'react-native-iconify';
 
-import HomeScreen from "@/screens/home";
-import SearchScreen from "@/screens/home/search";
-import CartScreen from "@/screens/home/cart";
-import ProfileScreen from "@/screens/home/profile";
+import HomeScreen from '@/screens/home';
+import SearchScreen from '@/screens/home/search';
+import CartScreen from '@/screens/home/cart';
+import SettingsScreen from '@/screens/home/settings';
+import OrdersScreen from '@/screens/home/orders';
+import { HomeLayoutParams } from '@/types/navigation';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<HomeLayoutParams>();
 
 export default function HomeLayout() {
   return (
@@ -20,12 +22,12 @@ export default function HomeLayout() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "Omni",
+            title: 'Omni',
             tabBarIcon: (props) => (
               <Iconify
                 color={props.color}
-                icon="feather:home"
-                size={props.size}
+                icon="material-symbols:shopping-bag-outline"
+                size={props.size +4}
               />
             ),
             headerRight(props) {
@@ -65,10 +67,23 @@ export default function HomeLayout() {
             ),
           }}
         />
-<Tab.Screen                                         name="Store"                                      component={HomeScreen}                            options={{                                          title: "Omni",                                    tabBarIcon: (props) => (                            <Iconify                                            color={props.color}                               icon="feather:shopping-bag"                       size={props.size}                               />                                              ),                                                headerRight(props) {                                return (                                            <Iconify                                            icon="feather:bell"                               color={props.tintColor}                           size={24}                                       />                                              );                                              },                                              }}                                              />
+        <Tab.Screen
+          name="Orders"
+          component={OrdersScreen}
+          options={{
+            tabBarIcon: (props) => (
+              <Iconify
+                color={props.color}
+                icon="feather:shopping-bag"
+                size={props.size}
+              />
+            ),
+          }}
+        />
         <Tab.Screen
           name="Settings"
-          component={ProfileScreen}
+          //@ts-ignore
+          component={SettingsScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
               <Iconify color={color} icon="feather:settings" size={size} />

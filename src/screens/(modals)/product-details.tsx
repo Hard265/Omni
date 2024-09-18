@@ -1,11 +1,11 @@
-import * as React from "react";
-import { View, Text } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import { Iconify } from "react-native-iconify";
-import { Button, IconButton } from "@/components/ui/Button";
-import CarouselCardItem from "@/components/ui/CarouselCardItem";
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { Iconify } from 'react-native-iconify';
+import { Button, IconButton } from '@/components/ui/Button';
+import CarouselCardItem from '@/components/ui/CarouselCardItem';
 
-export default function ItemScreen() {
+export default function ProductDetailsScreen() {
   const {
     colors: { background, text },
   } = useTheme();
@@ -13,8 +13,8 @@ export default function ItemScreen() {
     <View className="flex-1" style={{ backgroundColor: background }}>
       <CarouselCardItem
         images={[
-          "https://picsum.photos/seed/696/3000/2000",
-          "https://picsum.photos/seed/696/3000/2000",
+          'https://picsum.photos/seed/696/3000/2000',
+          'https://picsum.photos/seed/696/3000/2000',
         ]}
       />
       <View className="p-4">
@@ -31,8 +31,8 @@ export default function ItemScreen() {
         <Text className="text-xl font-semibold">Colors</Text>
         <View className="flex-row gap-2"></View>
       </View>
-      <View className="flex-row gap-4 justify-between items-center">
-        <View className="flex-row gap-2 border rounded-md shadow-md">
+      <View className="flex-row items-center justify-between gap-4">
+        <View className="flex-row gap-2 rounded-md border shadow-md">
           <IconButton onTap={() => {}}>
             <Iconify icon="feather:plus" size={24} color={text} />
           </IconButton>

@@ -1,22 +1,23 @@
-import "./global.css";
-import * as React from "react";
-import { View, Text, useColorScheme } from "react-native";
+import './global.css';
+import * as React from 'react';
+import { View, Text, useColorScheme } from 'react-native';
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
   LinkingOptions,
-} from "@react-navigation/native";
-import * as Linking from "expo-linking";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as SecureStore from "expo-secure-store";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+} from '@react-navigation/native';
+import * as Linking from 'expo-linking';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as SecureStore from 'expo-secure-store';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { AuthContext, AuthContextProps } from "@/hooks/useAuth";
-import authReducer, { AuthStateAction } from "@/reducers/auth";
-import RootStackNavigator from "@/navigation/RootStackNavigator";
-import { Provider } from "react-redux";
-import store from "@/redux/store";
+import { AuthContext, AuthContextProps } from '@/hooks/useAuth';
+import authReducer, { AuthStateAction } from '@/reducers/auth';
+import RootStackNavigator from '@/navigation/RootStackNavigator';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
+import { StatusBar } from 'expo-status-bar';
 
 const initialState = {
   isLoading: true,
@@ -24,12 +25,12 @@ const initialState = {
   userToken: null,
 };
 
-const prefix = Linking.createURL("/");
+const prefix = Linking.createURL('/');
 const linkingConfig = {
   screens: {
-    Home: "home",
+    Home: 'home',
     Item: {
-      path: "item/:id",
+      path: 'item/:id',
       parse: { id: Number },
     },
   },
@@ -49,7 +50,7 @@ function App() {
     async function bootstrapAsync() {
       let userToken: string | null = null;
       try {
-        userToken = await SecureStore.getItemAsync("userToken");
+        userToken = await SecureStore.getItemAsync('userToken');
       } catch {}
       dispatch({
         type: AuthStateAction.RESTORE_TOKEN,
@@ -63,22 +64,24 @@ function App() {
     () => ({
       signIn: async (credintials) => {
         try {
-          await SecureStore.setItemAsync("userToken", "dummy");
+          await SecureStore.setItemAsync('userToken', 'dummy');
         } catch {}
         dispatch({
           type: AuthStateAction.SIGN_IN,
-          token: "dummy",
+          token: 'dummy',
         });
       },
       signOut: async () => {
         try {
-          await SecureStore.deleteItemAsync("userToken");
+          await SecureStore.deleteItemAsync('userToken');
         } catch {}
-        dispatch({ type: AuthStateAction.SIGN_OUT });
+        dispatch({
+          type: AuthStateAction.SIGN_OUT,
+        });
       },
       isSignout: state.isSignout,
     }),
-    []
+    [],
   );
 
   return (
@@ -87,9 +90,14 @@ function App() {
         <NavigationContainer
           linking={linking}
           fallback={<Text>Loading</Text>}
-          theme={scheme === "dark" ? DarkTheme : DefaultTheme}
+          theme={
+            scheme === 'dark'
+              ? { ...DarkTheme, colors: { ...DarkTheme.colors, card: '#000' } }
+              : { ...DefaultTheme }
+          }
         >
           <AuthContext.Provider value={authContext}>
+            <StatusBar animated style={scheme === 'dark' ? 'light' : 'dark'} />
             <RootStackNavigator isSignout={state.isSignout} />
           </AuthContext.Provider>
         </NavigationContainer>
