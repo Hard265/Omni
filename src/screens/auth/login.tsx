@@ -1,10 +1,10 @@
 import * as  React from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, Text, TextInput } from 'react-native';
 
-import { InputField } from '@/components/ui/InputField';
 import useAuth from '@/hooks/useAuth';
+import { RectButton } from 'react-native-gesture-handler';
 
-export default function LoginScreen(){
+export default function LoginScreen() {
     const { signIn } = useAuth();
     const [form, setForm] = React.useState({
         email: '',
@@ -12,14 +12,27 @@ export default function LoginScreen(){
     });
 
     const handleLogin = async () => {
-        await signIn({...form})
+        await signIn({ ...form })
     };
 
     return (
         <View>
-            <InputField placeholder="Email" value={form.email} onChangeText={(text) => setForm({ ...form, email: text })} />
-            <InputField placeholder="Password" value={form.password} onChangeText={(text) => setForm({ ...form, password: text })} secureTextEntry={true} />
-            <Button title="Login" onPress={handleLogin} />
+            <View>
+                <Text>Email address</Text>
+                <TextInput value={form.email} onChangeText={email => setForm({ ...form, email })} />
+            </View>
+            <View>
+                <Text>Password</Text>
+                <TextInput value={form.password} onChangeText={password => setForm({ ...form, password })} />
+            </View>
+            <View>
+                <RectButton>
+                    <Text>Forgot Password</Text>
+                </RectButton>
+                <RectButton onPress={()=>handleLogin()}>
+                    <Text>Log In</Text>
+                </RectButton>
+            </View>
         </View>
     );
 };

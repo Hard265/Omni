@@ -3,6 +3,9 @@ export type RootStackParamList = {
   Signup: undefined;
   RootSidebarNavigator: undefined;
   ProductDetails: { productId: string };
+  Account: undefined;
+  NotificationSettings: undefined;
+  PasswordSettings:undefined
 };
 
 export type HomeLayoutParams = {

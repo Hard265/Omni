@@ -87,6 +87,7 @@ export default function HomeSidebarLayout() {
           headerShown: false,
         }}
       />
+      
     </Drawer.Navigator>
   );
 }

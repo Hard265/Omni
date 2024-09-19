@@ -6,6 +6,9 @@ import ProductDetails from '@/screens/(modals)/product-details';
 
 import RootSidebarNavigator from '@/navigation/RootSidebarNavigator';
 import { RootStackParamList } from '@/types/navigation';
+import AccountScreen from '@/screens/pages/account';
+import NotificationsSettingsScreen from '@/screens/pages/settings/notifications';
+import PasswordSettings from '@/screens/pages/settings/password';
 
 interface RootStackNavigatorProps {
   isSignout: boolean;
@@ -25,12 +28,36 @@ export default function RootStackNavigator({
         </Stack.Group>
       ) : (
         <>
-          <Stack.Group>
+          <Stack.Group >
             <Stack.Screen
               name="RootSidebarNavigator"
               component={RootSidebarNavigator}
               options={{
                 headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ animationTypeForReplace: "push" }}>
+            <Stack.Screen
+              name="Account"
+              component={AccountScreen}
+              options={{
+                title: "Account information",
+              }}
+            />
+            <Stack.Screen
+              name="NotificationSettings"
+              component={NotificationsSettingsScreen}
+              options={{
+
+                title: "Notifications",
+              }}
+            />
+            <Stack.Screen
+              name="PasswordSettings"
+              component={PasswordSettings}
+              options={{
+                title: "Change password",
               }}
             />
           </Stack.Group>

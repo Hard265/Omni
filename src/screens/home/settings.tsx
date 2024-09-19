@@ -14,14 +14,18 @@ export default function SettingsScreen(props: SettingsScreenProps) {
   const {
     colors: { text },
   } = useTheme();
-  // const navigation = useNavigation<{}>();
+  const navigation = useNavigation();
 
   return (
     <ScrollView className="flex flex-1">
       <View className="flex flex-col">
         <ListItem
           title="Account information"
-          subtitle="Edit your account information like your phone number, email, and password"
+          subtitle="Edit your account information like your phone number, email, and contry"
+          onPress={() => {
+            //@ts-ignore
+            navigation.navigate("Account")
+          }}
           append={
             <Iconify
               icon="feather:user"
@@ -34,6 +38,10 @@ export default function SettingsScreen(props: SettingsScreenProps) {
         <ListItem
           title="Change password"
           subtitle="Change your password to keep your account secure"
+          onPress={() => {
+            //@ts-ignore
+            navigation.navigate("PasswordSettings")
+          }}
           append={
             <Iconify
               icon="material-symbols:password-rounded"
@@ -56,7 +64,7 @@ export default function SettingsScreen(props: SettingsScreenProps) {
           }
         />
         <ListItem
-          onPress={() => {}}
+          onPress={() => { }}
           title="Edit address"
           subtitle="Edit your address to receive orders"
           append={
@@ -71,6 +79,10 @@ export default function SettingsScreen(props: SettingsScreenProps) {
         <ListItem
           title="Notifications"
           subtitle="Select kinds of notifications that you get about your activities, interest and recommendations"
+          onPress={() => {
+            //@ts-ignore
+            navigation.navigate("NotificationSettings")
+          }}
           append={
             <Iconify
               icon="ph:bell-simple-bold"

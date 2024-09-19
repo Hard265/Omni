@@ -28,7 +28,7 @@ export function ListItem(props: ListItemProps) {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 8,
+        padding: 14,
         paddingHorizontal: 16,
         rowGap: 16,
       }}
