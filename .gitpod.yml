@@ -14,3 +14,4 @@ vscode:
       - esbenp.prettier-vscode
       - bradlc.vscode-tailwindcss
       - PKief.material-icon-theme
+      - GitHub.github-vscode-theme

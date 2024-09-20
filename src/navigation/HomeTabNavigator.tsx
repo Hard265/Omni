@@ -20,9 +20,11 @@ export default function HomeLayout() {
       <Tab.Group>
         <Tab.Screen
           name="Home"
+          //@ts-ignore
           component={HomeScreen}
           options={{
             title: 'Omni',
+            
             tabBarIcon: (props) => (
               <Iconify
                 color={props.color}

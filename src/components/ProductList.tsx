@@ -8,10 +8,13 @@ import { Image } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   Pressable,
   ScrollView,
   SectionList,
   SectionListData,
+  SectionListProps,
   Text,
   TouchableOpacity,
   View,
@@ -19,14 +22,12 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 interface ProductListProps {
-  sections: SectionListData<Product, { data: Product[]; title: string }>[];
-  categories: {
-    title: string;
-    thumbnail: string;
-  }[];
+  onScroll:
+    | ((event: NativeSyntheticEvent<NativeScrollEvent>) => void)
+    | undefined;
 }
 
-export default function ProductList() {
+export default function ProductList({ onScroll }: ProductListProps) {
   const {
     colors: { primary, background },
   } = useTheme();
@@ -61,6 +62,7 @@ export default function ProductList() {
     <>
       <SectionList
         sections={sections}
+        onScroll={onScroll}
         ListHeaderComponent={
           <View className="p-4">
             <View className="mb-2 flex flex-row items-center justify-between">

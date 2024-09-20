@@ -36,8 +36,6 @@ const linkingConfig = {
   },
 };
 
-const Stack = createNativeStackNavigator();
-
 function App() {
   const linking: LinkingOptions<ReactNavigation.RootParamList> = {
     prefixes: [prefix],
@@ -51,14 +49,17 @@ function App() {
       let userToken: string | null = null;
       try {
         userToken = await SecureStore.getItemAsync('userToken');
-      } catch {}
-      dispatch({
-        type: AuthStateAction.RESTORE_TOKEN,
-        token: userToken,
-      });
+      } catch {
+      } finally {
+        dispatch({
+          type: AuthStateAction.RESTORE_TOKEN,
+          token: userToken,
+        });
+      }
     }
     bootstrapAsync();
   }, []);
+  
 
   const authContext = React.useMemo<AuthContextProps>(
     () => ({
@@ -74,10 +75,10 @@ function App() {
       signOut: async () => {
         try {
           await SecureStore.deleteItemAsync('userToken');
+          dispatch({
+            type: AuthStateAction.SIGN_OUT,
+          });
         } catch {}
-        dispatch({
-          type: AuthStateAction.SIGN_OUT,
-        });
       },
       isSignout: state.isSignout,
     }),
@@ -98,7 +99,7 @@ function App() {
         >
           <AuthContext.Provider value={authContext}>
             <StatusBar animated style={scheme === 'dark' ? 'light' : 'dark'} />
-            <RootStackNavigator isSignout={state.isSignout} />
+            <RootStackNavigator isSignout={state.userToken === null} />
           </AuthContext.Provider>
         </NavigationContainer>
       </Provider>

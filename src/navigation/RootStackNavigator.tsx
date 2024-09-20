@@ -9,6 +9,7 @@ import { RootStackParamList } from '@/types/navigation';
 import AccountScreen from '@/screens/pages/account';
 import NotificationsSettingsScreen from '@/screens/pages/settings/notifications';
 import PasswordSettings from '@/screens/pages/settings/password';
+import useAuth from '@/hooks/useAuth';
 
 interface RootStackNavigatorProps {
   isSignout: boolean;
@@ -19,12 +20,15 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNavigator({
   isSignout,
 }: RootStackNavigatorProps) {
+// const {}= useAuth()
+//   console.log(isSignout);
+  
   return (
     <Stack.Navigator>
       {isSignout ? (
-        <Stack.Group>
+        <Stack.Group screenOptions={{}}>
           <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Signup" component={SignupScreen} />
+          <Stack.Screen name="Signup" component={SignupScreen} options={{title: "create account"}} />
         </Stack.Group>
       ) : (
         <>
@@ -66,7 +70,9 @@ export default function RootStackNavigator({
               name="ProductDetails"
               component={ProductDetails}
               options={{
-                headerShown: false,
+                title: "",
+                animation: 'slide_from_bottom',
+                headerTransparent: true
               }}
             />
           </Stack.Group>

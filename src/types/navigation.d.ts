@@ -2,7 +2,7 @@ export type RootStackParamList = {
   Login: undefined;
   Signup: undefined;
   RootSidebarNavigator: undefined;
-  ProductDetails: { productId: string };
+  ProductDetails: { productId: string | number };
   Account: undefined;
   NotificationSettings: undefined;
   PasswordSettings:undefined
