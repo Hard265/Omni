@@ -13,7 +13,6 @@ export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2795870919.
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
