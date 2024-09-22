@@ -1,4 +1,4 @@
-import './global.css';
+import './src/index.css';
 import * as React from 'react';
 import { View, Text, useColorScheme } from 'react-native';
 import {
