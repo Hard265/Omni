@@ -4,16 +4,27 @@ interface CartItem {
   id: string;
   title: string;
   price: number;
+  total: number;
   quantity: number;
-  image: string;
+  thumbnail: string;
+  discountPercentage: number;
+  discountedTotal: number;
 }
 
 interface CartState {
   items: CartItem[];
+  discountedTotal: number;
+  totalProducts: number;
+  totalQuantity: number;
+  total: number;
 }
 
 const initialState: CartState = {
   items: [],
+  discountedTotal: 0,
+  totalProducts: 0,
+  totalQuantity: 0,
+  total: 0,
 };
 
 const cartSlice = createSlice({
