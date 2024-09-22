@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Iconify } from 'react-native-iconify';
 import colors from 'tailwindcss/colors';
+import { Heading, Heading2, Title } from './Text';
 
 interface ListItemProps {
   title: string;
@@ -65,9 +66,9 @@ export function ListItemNavigation(props: ListItemProps) {
       }}
     >
       {props.append && props.append}
-      <Text style={{ color: text }} className="flex-1 text-xl font-bold">
+      <Heading2>
         {props.title}
-      </Text>
+      </Heading2>
     </RectButton>
   );
 }

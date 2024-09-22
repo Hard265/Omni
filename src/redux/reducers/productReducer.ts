@@ -11,6 +11,7 @@ export interface Product {
   stock: number;
   tags: string[];
   minimumOrderQuantity: number;
+  thumbnail: string;
   reviews: {
     comment: string;
     date: string;

@@ -1,17 +1,22 @@
 import * as React from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { Iconify } from 'react-native-iconify';
 import { Button, IconButton } from '@/components/ui/Button';
-import CarouselCardItem from '@/components/ui/CarouselCardItem';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import CarouselCardItem from '@/components/ui/Carousel';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/redux/store';
 import _ from 'lodash';
 import { RectButton } from 'react-native-gesture-handler';
+import { formatCurrency } from '@/utils/utilities';
+import { Body, Heading, Subtitle, Title } from '@/components/ui/Text';
+import { addToCart } from '@/redux/reducers/cartReducer';
 
 export default function ProductDetailsScreen(props: any) {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const [inputs, setInputs] = React.useState({ quantity: 0 });
+  const dispatch = useDispatch<AppDispatch>();
   const products = useSelector((state: RootState) => state.product.products);
 
   const product = _(products).find({
@@ -25,6 +30,17 @@ export default function ProductDetailsScreen(props: any) {
       </View>
     );
   }
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product.id.toString(),
+        title: product.title,
+        price: product.price,
+        quantity: inputs.quantity + product.minimumOrderQuantity,
+        image: product.thumbnail,
+      }),
+    );
+  };
 
   const quantity = {
     reduce() {
@@ -44,27 +60,20 @@ export default function ProductDetailsScreen(props: any) {
   return (
     <View className="flex-1" style={{ backgroundColor: colors.background }}>
       <CarouselCardItem images={product.images} />
-      <ScrollView className="max-h-[40%] p-2 pb-4">
-        <View className="mb-6 flex-col gap-1">
-          <Text style={{ color: colors.text }} className="text-2xl font-bold">
-            {product.title}
-          </Text>
+      <ScrollView className="max-h-[40%] p-2 pb-4" fadingEdgeLength={20}>
+        <View className="mb-6 flex-col gap-3">
+          <Heading>{product.title}</Heading>
           <View className="flex-row items-center justify-between">
             <Text
-              style={{ color: colors.text }}
-              className="font-serif text-xl font-bold"
+              style={{ color: colors.text, fontFamily: 'FatFace' }}
+              className="text-xl"
             >
               <Text className="text-lg">MK </Text>
-              {product.price * 800}
+              {formatCurrency(product.price * 800)}
             </Text>
             <View className="flex-row items-center gap-2">
               <Iconify icon="feather:star" size={18} color={colors.text} />
-              <Text
-                style={{ color: colors.text }}
-                className="text-lg font-bold"
-              >
-                {product.rating}
-              </Text>
+              <Body>{product.rating}</Body>
               <Iconify
                 icon="radix-icons:divider-vertical"
                 size={18}
@@ -72,7 +81,11 @@ export default function ProductDetailsScreen(props: any) {
               />
               <Text
                 style={{ color: colors.primary }}
-                className="text-lg font-semibold"
+                className="font-semibold"
+                onPress={() => {
+                  //@ts-ignore
+                  navigation.navigate('Reviews', { productId: product.id });
+                }}
               >
                 {product.reviews.length} Reviews
               </Text>
@@ -80,34 +93,15 @@ export default function ProductDetailsScreen(props: any) {
           </View>
         </View>
         <View className="mb-3 flex-col gap-1">
-          <Text
-            style={{ color: colors.text }}
-            className="text-xl font-semibold"
-          >
-            Description
-          </Text>
-          <Text style={{ color: colors.text }} className="text-base opacity-75">
-            {product.description}
-          </Text>
+          <Title>Description</Title>
+          <Subtitle>{product.description}</Subtitle>
         </View>
         <View className="mb-3">
-          <Text
-            style={{ color: colors.text }}
-            className="text-xl font-semibold"
-          >
-            Tags
-          </Text>
-          <Text style={{ color: colors.text }} className="text-base opacity-75">
-            {product.tags.join(', ')}
-          </Text>
+          <Title>Tags</Title>
+          <Subtitle>{product.tags.join(', ')}</Subtitle>
         </View>
         <View>
-          <Text
-            style={{ color: colors.text }}
-            className="text-xl font-semibold"
-          >
-            Colors
-          </Text>
+          <Title>Colors</Title>
           <View className="flex-row gap-2"></View>
         </View>
       </ScrollView>
@@ -117,12 +111,12 @@ export default function ProductDetailsScreen(props: any) {
       >
         <View
           style={{ borderColor: colors.border }}
-          className="flex-row items-center gap-2 rounded-full border-2 shadow-md"
+          className="flex-row items-center gap-2 rounded-full border shadow-md"
         >
           <RectButton
             onPress={quantity.reduce}
             enabled={quantity.disableReduce}
-            style={{ padding: 12 }}
+            style={{ padding: 10 }}
           >
             <Iconify icon="tabler:minus" size={24} color={colors.text} />
           </RectButton>
@@ -133,12 +127,13 @@ export default function ProductDetailsScreen(props: any) {
           <RectButton
             onPress={quantity.increase}
             enabled={quantity.disableIncrease}
-            style={{ padding: 12 }}
+            style={{ padding: 10 }}
           >
             <Iconify icon="tabler:plus" size={24} color={colors.text} />
           </RectButton>
         </View>
         <RectButton
+          onPress={handleAddToCart}
           rippleColor={colors.border}
           style={{
             flexDirection: 'row',
@@ -156,9 +151,9 @@ export default function ProductDetailsScreen(props: any) {
             icon="tabler:shopping-cart-plus"
             size={20}
           />
-          <Text className="font-medium text-white dark:text-black">
-            Add to cart
-          </Text>
+          <Body>
+            <Text className="text-white dark:text-black">Add to cart</Text>
+          </Body>
         </RectButton>
       </View>
     </View>

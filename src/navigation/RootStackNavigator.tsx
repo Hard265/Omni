@@ -10,6 +10,9 @@ import AccountScreen from '@/screens/pages/account';
 import NotificationsSettingsScreen from '@/screens/pages/settings/notifications';
 import PasswordSettings from '@/screens/pages/settings/password';
 import useAuth from '@/hooks/useAuth';
+import CategoriesScreen from '@/screens/pages/categories';
+import ReviewsScreen from '@/screens/pages/reviews';
+import { Text } from 'react-native';
 
 interface RootStackNavigatorProps {
   isSignout: boolean;
@@ -40,7 +43,19 @@ export default function RootStackNavigator({
                 headerShown: false,
               }}
             />
+            <Stack.Screen
+              name="Categories"
+              component={CategoriesScreen}
+              options={{
+                title: "Home",
+              }}
+            />
+            <Stack.Screen
+              name="Reviews"
+              component={ReviewsScreen}
+            />
           </Stack.Group>
+
           <Stack.Group screenOptions={{ animationTypeForReplace: "push" }}>
             <Stack.Screen
               name="Account"

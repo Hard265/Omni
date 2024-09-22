@@ -2,10 +2,12 @@ export type RootStackParamList = {
   Login: undefined;
   Signup: undefined;
   RootSidebarNavigator: undefined;
+  Categories: undefined;
   ProductDetails: { productId: string | number };
   Account: undefined;
   NotificationSettings: undefined;
   PasswordSettings:undefined
+  Reviews:{ productId: string | number }
 };
 
 export type HomeLayoutParams = {

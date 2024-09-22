@@ -1,11 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Iconify } from 'react-native-iconify';
-
-import HomeScreen from '@/screens/home';
-import SearchScreen from '@/screens/home/search';
-import CartScreen from '@/screens/home/cart';
-import SettingsScreen from '@/screens/home/settings';
-import OrdersScreen from '@/screens/home/orders';
+import HomeScreen from '@/screens/pages/home';
+import SearchScreen from '@/screens/pages/home/search';
+import CartScreen from '@/screens/pages/home/cart';
+import SettingsScreen from '@/screens/pages/home/settings';
+import OrdersScreen from '@/screens/pages/home/orders';
 import { HomeLayoutParams } from '@/types/navigation';
 
 const Tab = createBottomTabNavigator<HomeLayoutParams>();
@@ -24,12 +23,12 @@ export default function HomeLayout() {
           component={HomeScreen}
           options={{
             title: 'Omni',
-            
+
             tabBarIcon: (props) => (
               <Iconify
                 color={props.color}
                 icon="material-symbols:shopping-bag-outline"
-                size={props.size +4}
+                size={props.size + 4}
               />
             ),
             headerRight(props) {

@@ -1,4 +1,4 @@
-import CarouselCardItem from '@/components/ui/CarouselCardItem';
+import CarouselCardItem from '@/components/ui/Carousel';
 import { blurhash } from '@/constants/Strings';
 import { fetchProducts } from '@/redux/actions/productActions';
 import { Product } from '@/redux/reducers/productReducer';

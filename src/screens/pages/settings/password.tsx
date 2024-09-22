@@ -10,49 +10,72 @@ export default function PasswordSettings() {
     newPassword: '',
     confirmPassword: '',
   });
+
+  const hasChanges = !Object.values(form).every(Boolean);
+
   return (
-    <View className="flex-1 p-2">
-      <View className="mb-3 flex-col gap-2">
-        <Text className="text-lg font-semibold" style={{ color: colors.text }}>
-          Current password
+    <View className="flex-1">
+      <View className="flex-col gap-2 p-4">
+        <Text
+          className="text-lg font-semibold capitalize"
+          style={{ color: colors.text }}
+        >
+          current password
         </Text>
         <TextInput
-          style={{ color: colors.text }}
-          className="rounded-md border-2 border-black/75 p-2.5 text-base focus:border-black dark:border-white/75 dark:focus:border-white"
+          style={{ color: colors.text, borderColor: colors.border }}
+          className="rounded-md border p-2"
           value={form.currentPassword}
+          autoComplete='current-password'
           onChangeText={(currentPassword) =>
             setForm({ ...form, currentPassword })
           }
         />
       </View>
-      <View className="mb-3 flex-col gap-2">
-        <Text className="text-lg font-semibold" style={{ color: colors.text }}>
-          New password
-        </Text>
-        <TextInput
-          className="rounded-md border-2 border-black/75 p-2.5 text-base focus:border-black dark:border-white/50 dark:focus:border-white"
-          value={form.newPassword}
-          onChangeText={(newPassword) => setForm({ ...form, newPassword })}
-        />
+      <View className="flex-row items-center gap-4 p-4">
+        <View className="flex-1 flex-col gap-2">
+          <Text
+            className="text-lg font-semibold capitalize"
+            style={{ color: colors.text }}
+          >
+            New password
+          </Text>
+          <TextInput
+            style={{ color: colors.text, borderColor: colors.border }}
+            className="rounded-md border p-2"
+            value={form.newPassword}
+            autoComplete='new-password'
+            onChangeText={(newPassword) => setForm({ ...form, newPassword })}
+          />
+        </View>
+        <View className="flex-1 flex-col gap-2">
+          <Text
+            className="text-lg font-semibold capitalize"
+            style={{ color: colors.text }}
+          >
+            Confirm password
+          </Text>
+          <TextInput
+            style={{ color: colors.text, borderColor: colors.border }}
+            className="rounded-md border p-2"
+            value={form.confirmPassword}
+            autoComplete='new-password'
+            onChangeText={(confirmPassword) =>
+              setForm({ ...form, confirmPassword })
+            }
+          />
+        </View>
       </View>
-      <View className="mb-3 flex-col gap-2">
-        <Text className="text-lg font-semibold" style={{ color: colors.text }}>
-          Confirm password
-        </Text>
-        <TextInput
-          className="rounded-md border-2 border-black/75 p-2.5 text-base focus:border-black dark:border-white/75 dark:focus:border-white"
-          value={form.confirmPassword}
-          onChangeText={(confirmPassword) =>
-            setForm({ ...form, confirmPassword })
-          }
-        />
-      </View>
-      <View className="mt-auto flex-row justify-between">
+      <View
+        style={{ borderColor: colors.border }}
+        className="mt-auto flex-row justify-between border-t p-4"
+      >
         <RectButton
           style={{
-            padding: 10,
+            padding: 8,
+            paddingHorizontal: 16,
             borderColor: colors.border,
-            borderWidth: 2,
+            borderWidth: 1,
             borderRadius: 50,
           }}
           rippleColor={colors.border}
@@ -65,8 +88,9 @@ export default function PasswordSettings() {
           </Text>
         </RectButton>
         <RectButton
+          enabled={!hasChanges}
           style={{
-            padding: 10,
+            padding: 8,
             paddingHorizontal: 16,
             flex: 0.5,
             justifyContent: 'center',
@@ -75,14 +99,15 @@ export default function PasswordSettings() {
             borderColor: colors.border,
             borderWidth: 2,
             borderRadius: 50,
+            opacity: hasChanges ? 0.5 : 1,
           }}
           rippleColor={colors.border}
         >
           <Text
-            className="text-base font-medium"
+            className="text-base font-medium capitalize"
             style={{ color: colors.background }}
           >
-            Log In
+            change
           </Text>
         </RectButton>
       </View>

@@ -30,7 +30,7 @@ export default function SignupScreen() {
           </Text>
           <TextInput
             style={{ color: colors.text }}
-            className="rounded-md border-2 border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
+            className="rounded-md border border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
             value={form.firstName}
             autoComplete="name-given"
             onChangeText={(firstName) => setForm({ ...form, firstName })}
@@ -45,7 +45,7 @@ export default function SignupScreen() {
           </Text>
           <TextInput
             style={{ color: colors.text }}
-            className="rounded-md border-2 border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
+            className="rounded-md border border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
             value={form.lastName}
             autoComplete="name-family"
             onChangeText={(lastName) => setForm({ ...form, lastName })}
@@ -58,7 +58,7 @@ export default function SignupScreen() {
         </Text>
         <TextInput
           style={{ color: colors.text }}
-          className="rounded-md border-2 border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
+          className="rounded-md border border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
           value={form.email}
           autoComplete="email"
           keyboardType="email-address"
@@ -75,7 +75,7 @@ export default function SignupScreen() {
           </Text>
           <TextInput
             style={{ color: colors.text }}
-            className="rounded-md border-2 border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
+            className="rounded-md border border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
             value={form.password}
             autoComplete="password-new"
             secureTextEntry
@@ -91,7 +91,7 @@ export default function SignupScreen() {
           </Text>
           <TextInput
             style={{ color: colors.text }}
-            className="rounded-md border-2 border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
+            className="rounded-md border border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
             value={form.password2}
             autoComplete="new-password"
             secureTextEntry

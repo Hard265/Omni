@@ -11,6 +11,7 @@ import { useTheme } from '@react-navigation/native';
 import { ListItemNavigation } from '@/components/ui/List';
 import { Iconify } from 'react-native-iconify';
 import { Image, Text, View } from 'react-native';
+import { Subtitle, Title } from '@/components/ui/Text';
 
 const Drawer = createDrawerNavigator();
 
@@ -29,12 +30,12 @@ function HomeSidebar(props: DrawerContentComponentProps) {
           }}
           className="h-14 w-14 rounded-full mb-2"
         />
-        <Text style={{ color: text }} className="text-lg font-semibold">
+        <Title>
           Kim Toy
-        </Text>
-        <Text style={{ color: text }} className="opacity-80">
+        </Title>
+        <Subtitle>
           Anthony80@hotmail.com
-        </Text>
+        </Subtitle>
       </View>
       <ListItemNavigation
         title="Account Infomation"

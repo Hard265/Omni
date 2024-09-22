@@ -35,7 +35,7 @@ export default function LoginScreen() {
         </Text>
         <TextInput
           style={{ color: colors.text }}
-          className="rounded-md border-2 border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
+          className="rounded-md border border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
           value={form.email}
           keyboardType="email-address"
           autoComplete="email"
@@ -48,7 +48,7 @@ export default function LoginScreen() {
         </Text>
         <TextInput
           style={{ color: colors.text }}
-          className="rounded-md border-2 border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
+          className="rounded-md border border-black/50 p-2.5 text-lg focus:border-black dark:border-white/50 dark:focus:border-white"
           value={form.password}
           secureTextEntry
           autoComplete="current-password"
