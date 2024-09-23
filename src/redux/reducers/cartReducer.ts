@@ -1,52 +1,53 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
-interface CartItem {
-  id: string;
-  title: string;
-  price: number;
-  total: number;
-  quantity: number;
-  thumbnail: string;
-  discountPercentage: number;
-  discountedTotal: number;
+export interface CartItem {
+    id: string;
+    title: string;
+    price: number;
+    total: number;
+    quantity: number;
+    thumbnail: string;
+    discountPercentage: number;
+    discountedTotal: number;
 }
 
-interface CartState {
-  items: CartItem[];
-  discountedTotal: number;
-  totalProducts: number;
-  totalQuantity: number;
-  total: number;
-}
-
-const initialState: CartState = {
-  items: [],
-  discountedTotal: 0,
-  totalProducts: 0,
-  totalQuantity: 0,
-  total: 0,
+const initialState: {
+    loading: boolean;
+    products: CartItem[];
+} = {
+    loading: false,
+    products: [],
 };
 
 const cartSlice = createSlice({
-  name: "cart",
-  initialState,
-  reducers: {
-    addToCart: (state, action:PayloadAction<CartItem>) => {
-        const item = state.items.find(i=> i.id === action.payload.id)
-        if(item){
-            item.quantity += action.payload.quantity
-        }else{
-            state.items.push(action.payload)
-        }
+    name: 'cart',
+    initialState,
+    reducers: {
+        setup(state, action: PayloadAction<typeof initialState>) {
+            state.products = action.payload.products;
+        },
+        setLoading(state, action: PayloadAction<boolean>) {
+            state.loading = action.payload;
+        },
+        add: (state, action: PayloadAction<CartItem>) => {
+            const item = _.find(state.products, { id: action.payload.id });
+            if (item) {
+                item.quantity += action.payload.quantity;
+            } else {
+                state.products.push(action.payload);
+            }
+        },
+        remove: (state, action: PayloadAction<Pick<CartItem, 'id'>>) => {
+            state.products = _.reject(state.products, {
+                id: action.payload.id,
+            });
+        },
+        clear: (state) => {
+            state.products = [];
+        },
     },
-    removeFromCart: (state, action: PayloadAction<Pick<CartItem, "id">>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
-    },
-    clearCart: (state) => {
-      state.items = [];
-    },
-  },
 });
 
-export const {addToCart,removeFromCart,clearCart } = cartSlice.actions;
+export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;

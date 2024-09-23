@@ -1,4 +1,5 @@
 import { ListItem } from '@/components/ui/List';
+import { Subtitle } from '@/components/ui/Text';
 import { HomeLayoutParams } from '@/types/navigation';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useNavigation, useTheme } from '@react-navigation/native';

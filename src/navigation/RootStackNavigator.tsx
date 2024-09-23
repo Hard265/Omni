@@ -12,7 +12,7 @@ import PasswordSettings from '@/screens/pages/settings/password';
 import useAuth from '@/hooks/useAuth';
 import CategoriesScreen from '@/screens/pages/categories';
 import ReviewsScreen from '@/screens/pages/reviews';
-import { Text } from 'react-native';
+import CategoryScreen from '@/screens/pages/category';
 
 interface RootStackNavigatorProps {
   isSignout: boolean;
@@ -53,6 +53,10 @@ export default function RootStackNavigator({
             <Stack.Screen
               name="Reviews"
               component={ReviewsScreen}
+            />
+            <Stack.Screen
+              name="Category"
+              component={CategoryScreen}
             />
           </Stack.Group>
 

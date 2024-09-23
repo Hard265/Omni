@@ -14,6 +14,10 @@ export default function HomeLayout() {
     <Tab.Navigator
       screenOptions={() => ({
         tabBarShowLabel: false,
+        headerTitleStyle: {
+          fontFamily: 'Inter_800ExtraBold',
+          fontSize: 24
+        }
       })}
     >
       <Tab.Group>
